@@ -56,7 +56,8 @@
     self.bounceQueueLabel.textColor = [UIColor grayColor];
     
     // Currently playing hidden
-    [self.currentlyPlayingView setHidden:YES];
+    self.currentlyPlayingView.frame = CGRectMake(self.currentlyPlayingView.frame.origin.x, -130.0, self.currentlyPlayingView.frame.size.width, self.currentlyPlayingView.frame.size.height);
+    self.tableView.tableHeaderView.frame = CGRectMake(self.headerView.frame.origin.x, self.headerView.frame.origin.y, self.headerView.frame.size.width, self.headerView.frame.size.height - self.currentlyPlayingView.frame.size.height);
     
     [self findOrCreatePlaylist];
 }
@@ -244,8 +245,17 @@
         self.currentSongImageView.layer.cornerRadius = self.currentSongImageView.frame.size.width / 2;
         self.currentSongImageView.layer.masksToBounds = YES;
     }
-    
-    self.currentlyPlayingView.hidden = NO;
+
+    // Slide down
+    if (self.currentlyPlayingView.frame.origin.y != 38.0) {
+        [UIView animateWithDuration:0.5 animations:^{
+            self.currentlyPlayingView.frame = CGRectMake(self.currentlyPlayingView.frame.origin.x, 38.0, self.currentlyPlayingView.frame.size.width, self.currentlyPlayingView.frame.size.height);
+            self.tableView.tableHeaderView.frame = CGRectMake(self.headerView.frame.origin.x, self.headerView.frame.origin.y, self.headerView.frame.size.width, self.headerView.frame.size.height + self.currentlyPlayingView.frame.size.height);
+            self.tableView.tableHeaderView = self.headerView;
+        } completion:^(BOOL completed){
+            [self.tableView reloadData];
+        }];
+    }
 }
 
 @end

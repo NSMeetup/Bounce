@@ -17,6 +17,8 @@
 @property (nonatomic, weak) IBOutlet UIImageView *friendIconView;
 @property (nonatomic, weak) IBOutlet UILabel *friendNameLabel;
 
+@property (nonatomic, weak) IBOutlet UIView *headerView;
+
 @property (nonatomic, weak) IBOutlet UIView *currentlyPlayingView;
 @property (nonatomic, weak) IBOutlet UILabel *currentArtistLabel;
 @property (nonatomic, weak) IBOutlet UILabel *currentAlbumLabel;
