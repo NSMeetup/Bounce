@@ -79,9 +79,6 @@
 #pragma mark RDAPIRequestDelegate
 
 - (void)rdioRequest:(RDAPIRequest *)request didLoadData:(id)data {
-    
-    NSLog(@"%@", request.parameters);
-    NSLog(@"%@", data);
     self.friends = data;
     [self.tableView reloadData];
     
@@ -140,7 +137,6 @@
         [cell.contentView addSubview:imageView];
     } else {
         NSURL *imageURL = [NSURL URLWithString:[friend objectForKey:@"icon250"]];
-        NSLog(@"%@", imageURL);
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
             NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
             dispatch_async(dispatch_get_main_queue(), ^{

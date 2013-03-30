@@ -12,6 +12,7 @@
 
 @property(nonatomic, retain) NSDictionary *friend;
 @property(nonatomic, retain) NSDictionary *playlist;
+@property(nonatomic, retain) NSMutableArray *tracks;
 
 @property (nonatomic, weak) IBOutlet UIImageView *friendIconView;
 @property (nonatomic, weak) IBOutlet UILabel *friendNameLabel;

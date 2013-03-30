@@ -62,6 +62,7 @@
 {
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     [params setObject:[[Settings settings] userKey] forKey:@"user"];
+    [params setObject:@"tracks" forKey:@"extras"];
     [[STAppDelegate rdioInstance] callAPIMethod:@"getPlaylists" withParameters:params delegate:self];
 }
 
@@ -71,6 +72,7 @@
     [params setObject:playlistName forKey:@"name"];
     [params setObject:@"Bounce Battle!" forKey:@"description"];
     [params setObject:@"" forKey:@"tracks"];
+    [params setObject:@"tracks" forKey:@"extras"];
     [[STAppDelegate rdioInstance] callAPIMethod:@"createPlaylist" withParameters:params delegate:self];
 }
 
@@ -121,10 +123,16 @@
         if (!foundPlaylist) {
             NSLog(@"Creating new playlist");
             [self createPlaylistWithName:playlistName1];
+        } else {
+            self.tracks = [self.playlist objectForKey:@"tracks"];
+            [self.tableView reloadData];
         }
     } else if ([method isEqualToString: @"createPlaylist"]) {
         self.playlist = data;
+        self.tracks = [data objectForKey:@"tracks"];
+        [self.tableView reloadData];
         
+        // Update collaboration mode
         NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
         [params setObject:[data objectForKey:@"key"] forKey:@"playlist"];
         [params setObject:[NSString stringWithFormat:@"%d",2] forKey:@"mode"];
@@ -151,8 +159,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    //return [self.friends count];
-    return 0;
+    return [self.tracks count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -164,19 +171,22 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
+    
+    NSMutableDictionary *track = [self.tracks objectAtIndex:indexPath.row];
+    
+    NSLog(@"%@", track);
     
     UILabel *name = [[UILabel alloc] initWithFrame:CGRectMake(80.0, 14.0, self.view.frame.size.width - 100.0, 20.0)];
     name.font = [UIFont openSansSemiboldWithSize:16.0];
     name.textColor = [UIColor grayColor];
-    //name.text = [NSString stringWithFormat:@"%@ %@", [friend objectForKey:@"firstName"], [friend objectForKey:@"lastName"]];
+    name.text = [track objectForKey:@"name"];
     [cell.contentView addSubview:name];
     
     UILabel *description = [[UILabel alloc] initWithFrame:CGRectMake(80.0, 34.0, self.view.frame.size.width - 100.0, 20.0)];
     description.font = [UIFont openSansLightWithSize:13.0];
     description.textColor = [UIColor grayColor];
-    //description.text = [NSString stringWithFormat:@"Bounce with %@...", [friend objectForKey:@"firstName"]];
+    description.text = [NSString stringWithFormat:@"%@ - %@", [track objectForKey:@"artist"], [track objectForKey:@"album"]];
     [cell.contentView addSubview:description];
     
     /*if ([friend objectForKey:@"downloadedIconImage"]) {

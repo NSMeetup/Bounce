@@ -10,7 +10,7 @@
 #import "STAppDelegate.h"
 #import "Settings.h"
 
-@interface STLandingViewController () <RdioDelegate, RDAPIRequestDelegate>
+@interface STLandingViewController () <RdioDelegate>
 
 @property (nonatomic, copy) STLandingViewControllerCompletion completion;
 
@@ -32,11 +32,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    /*NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
-    [params setObject:@"Artist,Album,Track" forKey:@"types"];
-    [params setObject:@"Calvin" forKey:@"query"];
-    [[STAppDelegate rdioInstance] callAPIMethod:@"search" withParameters:params delegate:self];*/
 }
 
 - (IBAction)loginButtonPressed:(id)sender
@@ -79,19 +74,6 @@
     if (self.completion) {
         self.completion(NO);
     }
-}
-
-#pragma mark -
-#pragma mark RDAPIRequestDelegate
-
-- (void)rdioRequest:(RDAPIRequest *)request didLoadData:(id)data {
-
-    NSLog(@"%@", request.parameters);
-    NSLog(@"%@", data);
-}
-
-- (void)rdioRequest:(RDAPIRequest *)request didFailWithError:(NSError*)error {
-    NSLog(@"error");
 }
 
 - (void)didReceiveMemoryWarning
