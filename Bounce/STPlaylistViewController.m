@@ -36,11 +36,24 @@
     self.friendNameLabel.font = [UIFont openSansSemiboldWithSize:self.friendNameLabel.font.pointSize];
     self.friendNameLabel.textColor = [UIColor grayColor];
     self.friendNameLabel.text = [NSString stringWithFormat:@"%@ %@", [self.friend objectForKey:@"firstName"], [self.friend objectForKey:@"lastName"]];
+    
     self.friendIconView.image = [self.friend objectForKey:@"downloadedIconImage"];
     self.friendIconView.contentMode = UIViewContentModeScaleAspectFill;
     self.friendIconView.clipsToBounds = YES;
     self.friendIconView.layer.cornerRadius = self.friendIconView.frame.size.width / 2;
     self.friendIconView.layer.masksToBounds = YES;
+    
+    self.currentArtistLabel.font = [UIFont openSansLightWithSize:self.currentArtistLabel.font.pointSize];
+    self.currentArtistLabel.textColor = [UIColor grayColor];
+    
+    self.currentAlbumLabel.font = [UIFont openSansLightWithSize:self.currentAlbumLabel.font.pointSize];
+    self.currentAlbumLabel.textColor = [UIColor grayColor];
+    
+    self.currentSongLabel.font = [UIFont openSansLightWithSize:self.currentSongLabel.font.pointSize];
+    self.currentSongLabel.textColor = [UIColor grayColor];
+    
+    self.bounceQueueLabel.font = [UIFont openSansLightWithSize:self.bounceQueueLabel.font.pointSize];
+    self.bounceQueueLabel.textColor = [UIColor grayColor];
     
     [self findOrCreatePlaylist];
 }

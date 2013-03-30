@@ -15,6 +15,14 @@
 
 @property (nonatomic, weak) IBOutlet UIImageView *friendIconView;
 @property (nonatomic, weak) IBOutlet UILabel *friendNameLabel;
+
+@property (nonatomic, weak) IBOutlet UIView *currentlyPlayingView;
+@property (nonatomic, weak) IBOutlet UILabel *currentArtistLabel;
+@property (nonatomic, weak) IBOutlet UILabel *currentAlbumLabel;
+@property (nonatomic, weak) IBOutlet UILabel *currentSongLabel;
+@property (nonatomic, weak) IBOutlet UIImageView *currentSongImageView;
+
+@property (nonatomic, weak) IBOutlet UILabel *bounceQueueLabel;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 
 - (IBAction)backButtonPressed:(id)sender;
