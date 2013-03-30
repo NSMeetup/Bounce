@@ -150,6 +150,8 @@
 
 - (IBAction)backButtonPressed:(id)sender
 {
+    [[STAppDelegate rdioInstance].player stop];
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
