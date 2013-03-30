@@ -62,7 +62,7 @@
 {
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     [params setObject:[[Settings settings] userKey] forKey:@"user"];
-    [[STAppDelegate rdioInstance] callAPIMethod:@"getUserPlaylists" withParameters:params delegate:self];
+    [[STAppDelegate rdioInstance] callAPIMethod:@"getPlaylists" withParameters:params delegate:self];
 }
 
 - (void) createPlaylistWithName:(NSString*) playlistName
@@ -79,11 +79,11 @@
 
 - (void)rdioRequest:(RDAPIRequest *)request didLoadData:(id)data
 {
-    NSLog(@"%@", data);
+    //NSLog(@"%@", data);
     
     NSString *method = [request.parameters objectForKey:@"method"];
     
-    if ([method isEqualToString: @"getUserPlaylists"]) {
+    if ([method isEqualToString: @"getPlaylists"]) {
         
         NSString *playlistName1 = [NSString stringWithFormat:@"Bounce %@ vs %@ %@",
                                    [[Settings settings] user],
@@ -96,7 +96,7 @@
                                   [[Settings settings] user]];
         
         BOOL foundPlaylist = NO;
-        for (NSDictionary* playlist in data) {
+        for (NSDictionary* playlist in [data objectForKey:@"owned"]) {
             NSString* name = [playlist objectForKey:@"name"];
             
             if([name isEqual: playlistName1] || [name isEqual: playlistName2]) {
@@ -107,6 +107,19 @@
         }
         
         if (!foundPlaylist) {
+            for (NSDictionary* playlist in [data objectForKey:@"collab"]) {
+                NSString* name = [playlist objectForKey:@"name"];
+                
+                if([name isEqual: playlistName1] || [name isEqual: playlistName2]) {
+                    foundPlaylist = YES;
+                    self.playlist = playlist;
+                    break;
+                }
+            }
+        }
+        
+        if (!foundPlaylist) {
+            NSLog(@"Creating new playlist");
             [self createPlaylistWithName:playlistName1];
         }
     } else if ([method isEqualToString: @"createPlaylist"]) {
