@@ -7,8 +7,11 @@
 //
 
 #import "STPlaylistViewController.h"
+#import "STAppDelegate.h"
+#import "Settings.h"
+#import <Rdio/Rdio.h>
 
-@interface STPlaylistViewController ()
+@interface STPlaylistViewController () <RdioDelegate, RDAPIRequestDelegate>
 
 @end
 
@@ -26,8 +29,41 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self createPlaylist];
     // Do any additional setup after loading the view from its nib.
 }
+
+- (void) createPlaylist
+{
+    self.tracks = @"";
+    NSString *playlistName = [NSString stringWithFormat:@"Bounce %@ %@ vs %@",
+                              [self.friend objectForKey:@"firstName"],
+                              [self.friend objectForKey:@"lastName"],
+                              [[Settings settings] user]];
+    
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    [params setObject:playlistName forKey:@"name"];
+    [params setObject:@"Bounce Battle!" forKey:@"description"];
+    [params setObject:self.tracks forKey:@"tracks"];
+    [[STAppDelegate rdioInstance] callAPIMethod:@"createPlaylist" withParameters:params delegate:self];
+}
+
+
+#pragma mark -
+#pragma mark RDAPIRequestDelegate
+
+- (void)rdioRequest:(RDAPIRequest *)request didLoadData:(id)data {
+    
+    NSLog(@"%@", request.parameters);
+    NSLog(@"%@", data);
+    
+}
+
+- (void)rdioRequest:(RDAPIRequest *)request didFailWithError:(NSError*)error {
+    NSLog(@"error");
+}
+
+
 
 - (void)didReceiveMemoryWarning
 {

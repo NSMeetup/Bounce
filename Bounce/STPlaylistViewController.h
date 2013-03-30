@@ -10,5 +10,6 @@
 
 @interface STPlaylistViewController : UIViewController
     @property(nonatomic) NSDictionary *friend;
-
+    @property(nonatomic) NSDictionary *currentUser;
+    @property(nonatomic) NSString *tracks;
 @end
