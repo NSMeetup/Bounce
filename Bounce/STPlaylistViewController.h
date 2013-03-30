@@ -13,4 +13,10 @@
 @property(nonatomic, retain) NSDictionary *friend;
 @property(nonatomic, retain) NSDictionary *playlist;
 
+@property (nonatomic, weak) IBOutlet UIImageView *friendIconView;
+@property (nonatomic, weak) IBOutlet UILabel *friendNameLabel;
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
+
+- (IBAction)backButtonPressed:(id)sender;
+
 @end
