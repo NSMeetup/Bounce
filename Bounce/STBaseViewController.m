@@ -35,14 +35,8 @@
 {
     if ([[Settings settings] user] != nil) {
         [self pullListOfFriends];
+        [self setToken];
     }
-}
-
-- (void)pullListOfFriends
-{
-    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
-    [params setObject:[[Settings settings] userKey] forKey:@"user"];
-    [[STAppDelegate rdioInstance] callAPIMethod:@"userFollowing" withParameters:params delegate:self];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -54,10 +48,22 @@
     }
 }
 
-- (void)didReceiveMemoryWarning
+- (void)setToken
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    NSString *accessToken = [[Settings settings] accessToken];
+    if (accessToken != nil) {
+        /**
+         * We've got an access token so let's authorize with it so we can make API requests that require user authentication.
+         */
+        [[STAppDelegate rdioInstance] authorizeUsingAccessToken:accessToken fromController:self];
+    }
+}
+
+- (void)pullListOfFriends
+{
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    [params setObject:[[Settings settings] userKey] forKey:@"user"];
+    [[STAppDelegate rdioInstance] callAPIMethod:@"userFollowing" withParameters:params delegate:self];
 }
 
 #pragma mark -
