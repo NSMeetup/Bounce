@@ -9,12 +9,12 @@
 #import <UIKit/UIKit.h>
 #import <Rdio/Rdio.h>
 
-@class STLandingViewController;
+@class STBaseViewController;
 
 @interface STAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) STLandingViewController *viewController;
+@property (strong, nonatomic) STBaseViewController *viewController;
 @property (nonatomic, readonly) Rdio *rdio;
 
 /**

@@ -7,7 +7,7 @@
 //
 
 #import "STAppDelegate.h"
-#import "STLandingViewController.h"
+#import "STBaseViewController.h"
 
 @interface STAppDelegate ()
 @property (nonatomic, readwrite) Rdio *rdio;
@@ -27,11 +27,11 @@
      * Create an instance of the Rdio class with our Rdio API key and secret.
      */
     self.rdio = [[Rdio alloc] initWithConsumerKey:@"ceprxk46njwr6mdg2tf7yrbe" andSecret:@"yJmrm79Ygb" delegate:nil];
-    NSArray* keys = [@"t2742133,t1992210,t7418766,t8816323" componentsSeparatedByString:@","];
-    [self.rdio.player playSources:keys];
     
-    self.viewController = [[STLandingViewController alloc] initWithNibName:@"STLandingViewController" bundle:nil];
-    self.window.rootViewController = self.viewController;
+    self.viewController = [[STBaseViewController alloc] initWithNibName:@"STBaseViewController" bundle:nil];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:self.viewController];
+    [navController setNavigationBarHidden:YES];
+    self.window.rootViewController = navController;
     [self.window makeKeyAndVisible];
 
     return YES;

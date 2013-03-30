@@ -1,5 +1,5 @@
 //
-//  STLandingViewController.h
+//  STBaseViewController.h
 //  Bounce
 //
 //  Created by Leah Culver on 3/30/13.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface STLandingViewController : UIViewController
-
-- (IBAction)loginButtonPressed:(id)sender;
+@interface STBaseViewController : UIViewController
 
 @end
