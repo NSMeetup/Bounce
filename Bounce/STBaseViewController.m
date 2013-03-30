@@ -7,10 +7,11 @@
 //
 
 #import "STBaseViewController.h"
+#import "STAppDelegate.h"
 #import "STLandingViewController.h"
 #import "Settings.h"
 
-@interface STBaseViewController ()
+@interface STBaseViewController () <RdioDelegate, RDAPIRequestDelegate>
 
 @end
 
@@ -27,6 +28,14 @@
 
 - (void)viewDidLoad
 {
+    [self pullListOfFriends];
+}
+
+- (void)pullListOfFriends
+{
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    [params setObject:[[Settings settings] userKey] forKey:@"user"];
+    [[STAppDelegate rdioInstance] callAPIMethod:@"userFollowing" withParameters:params delegate:self];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -42,6 +51,19 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark -
+#pragma mark RDAPIRequestDelegate
+
+- (void)rdioRequest:(RDAPIRequest *)request didLoadData:(id)data {
+    
+    NSLog(@"%@", request.parameters);
+    NSLog(@"%@", data);
+}
+
+- (void)rdioRequest:(RDAPIRequest *)request didFailWithError:(NSError*)error {
+    NSLog(@"error");
 }
 
 @end
