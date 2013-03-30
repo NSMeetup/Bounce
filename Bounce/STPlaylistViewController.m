@@ -124,6 +124,11 @@
         }
     } else if ([method isEqualToString: @"createPlaylist"]) {
         self.playlist = data;
+        
+        NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+        [params setObject:[data objectForKey:@"key"] forKey:@"playlist"];
+        [params setObject:[NSString stringWithFormat:@"%d",2] forKey:@"mode"];
+        [[STAppDelegate rdioInstance] callAPIMethod:@"setPlaylistCollaborationMode" withParameters:params delegate:self];
     }
 }
 
@@ -161,8 +166,6 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-    
-    NSMutableDictionary *track = nil;
     
     UILabel *name = [[UILabel alloc] initWithFrame:CGRectMake(80.0, 14.0, self.view.frame.size.width - 100.0, 20.0)];
     name.font = [UIFont openSansSemiboldWithSize:16.0];
