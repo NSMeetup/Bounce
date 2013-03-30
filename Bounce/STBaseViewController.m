@@ -33,7 +33,9 @@
 
 - (void)viewDidLoad
 {
-    [self pullListOfFriends];
+    if ([[Settings settings] user] != nil) {
+        [self pullListOfFriends];
+    }
 }
 
 - (void)pullListOfFriends
