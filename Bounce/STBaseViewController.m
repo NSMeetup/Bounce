@@ -13,6 +13,8 @@
 
 @interface STBaseViewController () <RdioDelegate, RDAPIRequestDelegate>
 
+@property (nonatomic, retain) NSMutableArray *friends;
+
 @end
 
 @implementation STBaseViewController
@@ -60,10 +62,59 @@
     
     NSLog(@"%@", request.parameters);
     NSLog(@"%@", data);
+    self.friends = data;
+    [self.tableView reloadData];
+    
 }
 
 - (void)rdioRequest:(RDAPIRequest *)request didFailWithError:(NSError*)error {
     NSLog(@"error");
+}
+
+#pragma mark -
+#pragma mark Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [self.friends count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *identifier = @"FriendsCell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];
+        cell.selectionStyle = UITableViewCellSelectionStyleGray;
+    }
+    
+    NSDictionary *friend = [self.friends objectAtIndex:indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", [friend objectForKey:@"firstName"], [friend objectForKey:@"lastName"]];
+    
+    return cell;
+}
+
+#pragma mark -
+#pragma mark Table view delegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 44.0;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    NSDictionary *friend = [self.friends objectAtIndex:indexPath.row];
+    
+    // TODO create and show playlist view controller
 }
 
 @end
