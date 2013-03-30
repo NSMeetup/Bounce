@@ -10,6 +10,7 @@
 		083EB99F17076B9600CC7B13 /* STBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 083EB99D17076B9600CC7B13 /* STBaseViewController.m */; };
 		083EB9A017076B9600CC7B13 /* STBaseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 083EB99E17076B9600CC7B13 /* STBaseViewController.xib */; };
 		083EB9A317076C5700CC7B13 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 083EB9A217076C5700CC7B13 /* Settings.m */; };
+		085661821707865A00BB708D /* OpenSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 085661811707865A00BB708D /* OpenSans-LightItalic.ttf */; };
 		08D986801707534600CBDF9E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08D9867F1707534600CBDF9E /* UIKit.framework */; };
 		08D986821707534600CBDF9E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08D986811707534600CBDF9E /* Foundation.framework */; };
 		08D986841707534600CBDF9E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08D986831707534600CBDF9E /* CoreGraphics.framework */; };
@@ -32,6 +33,14 @@
 		08EB388F1707710300A45F33 /* login_with_rdio_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08EB38891707710300A45F33 /* login_with_rdio_btn@2x.png */; };
 		08EB38911707710300A45F33 /* splash_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08EB388B1707710300A45F33 /* splash_bg@2x.png */; };
 		08EB3893170771C700A45F33 /* splash_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 08EB3892170771C700A45F33 /* splash_bg.png */; };
+		08EB389B17077EC300A45F33 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EB389A17077EC300A45F33 /* QuartzCore.framework */; };
+		08EB38A017077F6800A45F33 /* icon_speaker.png in Resources */ = {isa = PBXBuildFile; fileRef = 08EB389C17077F6800A45F33 /* icon_speaker.png */; };
+		08EB38A117077F6800A45F33 /* icon_speaker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08EB389D17077F6800A45F33 /* icon_speaker@2x.png */; };
+		08EB38A217077F6800A45F33 /* logo_bounce_grey.png in Resources */ = {isa = PBXBuildFile; fileRef = 08EB389E17077F6800A45F33 /* logo_bounce_grey.png */; };
+		08EB38A317077F6800A45F33 /* logo_bounce_grey@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08EB389F17077F6800A45F33 /* logo_bounce_grey@2x.png */; };
+		08EB38A61707808800A45F33 /* UIFont+Bounce.m in Sources */ = {isa = PBXBuildFile; fileRef = 08EB38A51707808800A45F33 /* UIFont+Bounce.m */; };
+		08EB38B31707851100A45F33 /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 08EB38B01707851100A45F33 /* OpenSans-Light.ttf */; };
+		08EB38B51707851100A45F33 /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 08EB38B21707851100A45F33 /* OpenSans-Semibold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +49,7 @@
 		083EB99E17076B9600CC7B13 /* STBaseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STBaseViewController.xib; sourceTree = "<group>"; };
 		083EB9A117076C5700CC7B13 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
 		083EB9A217076C5700CC7B13 /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
+		085661811707865A00BB708D /* OpenSans-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-LightItalic.ttf"; path = "Fonts/OpenSans-LightItalic.ttf"; sourceTree = "<group>"; };
 		08D9867C1707534600CBDF9E /* Bounce.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bounce.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08D9867F1707534600CBDF9E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		08D986811707534600CBDF9E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -67,6 +77,15 @@
 		08EB38891707710300A45F33 /* login_with_rdio_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_with_rdio_btn@2x.png"; sourceTree = "<group>"; };
 		08EB388B1707710300A45F33 /* splash_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash_bg@2x.png"; sourceTree = "<group>"; };
 		08EB3892170771C700A45F33 /* splash_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_bg.png; sourceTree = "<group>"; };
+		08EB389A17077EC300A45F33 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		08EB389C17077F6800A45F33 /* icon_speaker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_speaker.png; sourceTree = "<group>"; };
+		08EB389D17077F6800A45F33 /* icon_speaker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_speaker@2x.png"; sourceTree = "<group>"; };
+		08EB389E17077F6800A45F33 /* logo_bounce_grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_bounce_grey.png; sourceTree = "<group>"; };
+		08EB389F17077F6800A45F33 /* logo_bounce_grey@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_bounce_grey@2x.png"; sourceTree = "<group>"; };
+		08EB38A41707808800A45F33 /* UIFont+Bounce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+Bounce.h"; sourceTree = "<group>"; };
+		08EB38A51707808800A45F33 /* UIFont+Bounce.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+Bounce.m"; sourceTree = "<group>"; };
+		08EB38B01707851100A45F33 /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Light.ttf"; path = "Fonts/OpenSans-Light.ttf"; sourceTree = "<group>"; };
+		08EB38B21707851100A45F33 /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Semibold.ttf"; path = "Fonts/OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +100,7 @@
 				08D986A91707566000CBDF9E /* Security.framework in Frameworks */,
 				08D986A51707564E00CBDF9E /* SystemConfiguration.framework in Frameworks */,
 				08D986801707534600CBDF9E /* UIKit.framework in Frameworks */,
+				08EB389B17077EC300A45F33 /* QuartzCore.framework in Frameworks */,
 				08D986AB1707584E00CBDF9E /* Rdio.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -113,6 +133,7 @@
 				08D986A21707564300CBDF9E /* CFNetwork.framework */,
 				08D986831707534600CBDF9E /* CoreGraphics.framework */,
 				08D986811707534600CBDF9E /* Foundation.framework */,
+				08EB389A17077EC300A45F33 /* QuartzCore.framework */,
 				08D986A81707566000CBDF9E /* Security.framework */,
 				08D986A41707564E00CBDF9E /* SystemConfiguration.framework */,
 				08D9867F1707534600CBDF9E /* UIKit.framework */,
@@ -133,7 +154,10 @@
 				08D9869A1707534600CBDF9E /* STLandingViewController.xib */,
 				083EB9A117076C5700CC7B13 /* Settings.h */,
 				083EB9A217076C5700CC7B13 /* Settings.m */,
+				08EB38A41707808800A45F33 /* UIFont+Bounce.h */,
+				08EB38A51707808800A45F33 /* UIFont+Bounce.m */,
 				08EB387F17076F2A00A45F33 /* Images */,
+				08EB38A7170783DB00A45F33 /* Fonts */,
 				08D986861707534600CBDF9E /* Supporting Files */,
 			);
 			path = Bounce;
@@ -162,8 +186,22 @@
 				08EB38891707710300A45F33 /* login_with_rdio_btn@2x.png */,
 				08EB3892170771C700A45F33 /* splash_bg.png */,
 				08EB388B1707710300A45F33 /* splash_bg@2x.png */,
+				08EB389C17077F6800A45F33 /* icon_speaker.png */,
+				08EB389D17077F6800A45F33 /* icon_speaker@2x.png */,
+				08EB389E17077F6800A45F33 /* logo_bounce_grey.png */,
+				08EB389F17077F6800A45F33 /* logo_bounce_grey@2x.png */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		08EB38A7170783DB00A45F33 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				085661811707865A00BB708D /* OpenSans-LightItalic.ttf */,
+				08EB38B01707851100A45F33 /* OpenSans-Light.ttf */,
+				08EB38B21707851100A45F33 /* OpenSans-Semibold.ttf */,
+			);
+			name = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -230,6 +268,13 @@
 				08EB388F1707710300A45F33 /* login_with_rdio_btn@2x.png in Resources */,
 				08EB38911707710300A45F33 /* splash_bg@2x.png in Resources */,
 				08EB3893170771C700A45F33 /* splash_bg.png in Resources */,
+				08EB38A017077F6800A45F33 /* icon_speaker.png in Resources */,
+				08EB38A117077F6800A45F33 /* icon_speaker@2x.png in Resources */,
+				08EB38A217077F6800A45F33 /* logo_bounce_grey.png in Resources */,
+				08EB38A317077F6800A45F33 /* logo_bounce_grey@2x.png in Resources */,
+				08EB38B31707851100A45F33 /* OpenSans-Light.ttf in Resources */,
+				08EB38B51707851100A45F33 /* OpenSans-Semibold.ttf in Resources */,
+				085661821707865A00BB708D /* OpenSans-LightItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,6 +290,7 @@
 				08D986991707534600CBDF9E /* STLandingViewController.m in Sources */,
 				083EB99F17076B9600CC7B13 /* STBaseViewController.m in Sources */,
 				083EB9A317076C5700CC7B13 /* Settings.m in Sources */,
+				08EB38A61707808800A45F33 /* UIFont+Bounce.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

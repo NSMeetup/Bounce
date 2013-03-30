@@ -10,10 +10,13 @@
 #import "STAppDelegate.h"
 #import "STLandingViewController.h"
 #import "Settings.h"
+#import <QuartzCore/QuartzCore.h>
+#import "UIFont+Bounce.h"
 
 @interface STBaseViewController () <RdioDelegate, RDAPIRequestDelegate>
 
 @property (nonatomic, retain) NSMutableArray *friends;
+@property (nonatomic, retain) NSMutableArray *friendIcons;
 
 @end
 
@@ -30,6 +33,10 @@
 
 - (void)viewDidLoad
 {
+    if (self.friendIcons == nil) {
+        self.friendIcons = [[NSMutableArray alloc] init];
+    }
+    
     [self pullListOfFriends];
 }
 
@@ -91,12 +98,44 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];
-        cell.selectionStyle = UITableViewCellSelectionStyleGray;
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
-    NSDictionary *friend = [self.friends objectAtIndex:indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", [friend objectForKey:@"firstName"], [friend objectForKey:@"lastName"]];
+    NSMutableDictionary *friend = [self.friends objectAtIndex:indexPath.row];
+    
+    UILabel *name = [[UILabel alloc] initWithFrame:CGRectMake(80.0, 14.0, self.view.frame.size.width - 100.0, 20.0)];
+    name.font = [UIFont openSansSemiboldWithSize:16.0];
+    name.textColor = [UIColor grayColor];
+    name.text = [NSString stringWithFormat:@"%@ %@", [friend objectForKey:@"firstName"], [friend objectForKey:@"lastName"]];
+    [cell.contentView addSubview:name];
+    
+    UILabel *lastBounced = [[UILabel alloc] initWithFrame:CGRectMake(80.0, 34.0, self.view.frame.size.width - 100.0, 20.0)];
+    lastBounced.font = [UIFont openSansLightWithSize:13.0];
+    lastBounced.textColor = [UIColor grayColor];
+    lastBounced.text = [NSString stringWithFormat:@"Bounce with %@...", [friend objectForKey:@"firstName"]];
+    [cell.contentView addSubview:lastBounced];
+    
+    if ([friend objectForKey:@"downloadedIconImage"]) {
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(20.0, 13.0, 40.0, 40.0)];
+        imageView.image = [friend objectForKey:@"downloadedIconImage"];
+        imageView.contentMode = UIViewContentModeScaleAspectFill;
+        imageView.clipsToBounds = YES;
+        imageView.layer.cornerRadius = imageView.frame.size.width / 2;
+        imageView.layer.masksToBounds = YES;
+        [cell.contentView addSubview:imageView];
+    } else {
+        NSURL *imageURL = [NSURL URLWithString:[friend objectForKey:@"icon250"]];
+        NSLog(@"%@", imageURL);
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+            NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [friend setObject:[UIImage imageWithData:imageData] forKey:@"downloadedIconImage"];
+                [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+            });
+        });
+    }
     
     return cell;
 }
@@ -105,7 +144,7 @@
 #pragma mark Table view delegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 44.0;
+    return 65.0;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
