@@ -41,6 +41,8 @@
 		08EB38A61707808800A45F33 /* UIFont+Bounce.m in Sources */ = {isa = PBXBuildFile; fileRef = 08EB38A51707808800A45F33 /* UIFont+Bounce.m */; };
 		08EB38B31707851100A45F33 /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 08EB38B01707851100A45F33 /* OpenSans-Light.ttf */; };
 		08EB38B51707851100A45F33 /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 08EB38B21707851100A45F33 /* OpenSans-Semibold.ttf */; };
+		DACE019A1707787F00AE1157 /* STPlaylistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DACE01981707787F00AE1157 /* STPlaylistViewController.m */; };
+		DACE019B1707787F00AE1157 /* STPlaylistViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DACE01991707787F00AE1157 /* STPlaylistViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +88,9 @@
 		08EB38A51707808800A45F33 /* UIFont+Bounce.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+Bounce.m"; sourceTree = "<group>"; };
 		08EB38B01707851100A45F33 /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Light.ttf"; path = "Fonts/OpenSans-Light.ttf"; sourceTree = "<group>"; };
 		08EB38B21707851100A45F33 /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Semibold.ttf"; path = "Fonts/OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
+		DACE01971707787F00AE1157 /* STPlaylistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPlaylistViewController.h; sourceTree = "<group>"; };
+		DACE01981707787F00AE1157 /* STPlaylistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPlaylistViewController.m; sourceTree = "<group>"; };
+		DACE01991707787F00AE1157 /* STPlaylistViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STPlaylistViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,8 +155,12 @@
 				083EB99D17076B9600CC7B13 /* STBaseViewController.m */,
 				083EB99E17076B9600CC7B13 /* STBaseViewController.xib */,
 				08D986971707534600CBDF9E /* STLandingViewController.h */,
+				DACE01971707787F00AE1157 /* STPlaylistViewController.h */,
+				DACE01981707787F00AE1157 /* STPlaylistViewController.m */,
+				DACE01991707787F00AE1157 /* STPlaylistViewController.xib */,
 				08D986981707534600CBDF9E /* STLandingViewController.m */,
 				08D9869A1707534600CBDF9E /* STLandingViewController.xib */,
+				08D986861707534600CBDF9E /* Supporting Files */,
 				083EB9A117076C5700CC7B13 /* Settings.h */,
 				083EB9A217076C5700CC7B13 /* Settings.m */,
 				08EB38A41707808800A45F33 /* UIFont+Bounce.h */,
@@ -275,6 +284,7 @@
 				08EB38B31707851100A45F33 /* OpenSans-Light.ttf in Resources */,
 				08EB38B51707851100A45F33 /* OpenSans-Semibold.ttf in Resources */,
 				085661821707865A00BB708D /* OpenSans-LightItalic.ttf in Resources */,
+				DACE019B1707787F00AE1157 /* STPlaylistViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,6 +301,7 @@
 				083EB99F17076B9600CC7B13 /* STBaseViewController.m in Sources */,
 				083EB9A317076C5700CC7B13 /* Settings.m in Sources */,
 				08EB38A61707808800A45F33 /* UIFont+Bounce.m in Sources */,
+				DACE019A1707787F00AE1157 /* STPlaylistViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

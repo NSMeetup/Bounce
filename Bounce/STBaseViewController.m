@@ -12,11 +12,11 @@
 #import "Settings.h"
 #import <QuartzCore/QuartzCore.h>
 #import "UIFont+Bounce.h"
+#import "STPlaylistViewController.h"
 
 @interface STBaseViewController () <RdioDelegate, RDAPIRequestDelegate>
 
 @property (nonatomic, retain) NSMutableArray *friends;
-@property (nonatomic, retain) NSMutableArray *friendIcons;
 
 @end
 
@@ -33,10 +33,6 @@
 
 - (void)viewDidLoad
 {
-    if (self.friendIcons == nil) {
-        self.friendIcons = [[NSMutableArray alloc] init];
-    }
-    
     [self pullListOfFriends];
 }
 
@@ -153,7 +149,9 @@
     
     NSDictionary *friend = [self.friends objectAtIndex:indexPath.row];
     
-    // TODO create and show playlist view controller
+    STPlaylistViewController *playlistController = [[STPlaylistViewController alloc] initWithNibName:@"STPlaylistViewController" bundle:nil];
+    playlistController.friend = friend;
+    [self.navigationController pushViewController:playlistController animated:YES];
 }
 
 @end
