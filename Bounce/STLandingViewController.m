@@ -12,9 +12,22 @@
 
 @interface STLandingViewController () <RdioDelegate, RDAPIRequestDelegate>
 
+@property (nonatomic, copy) STLandingViewControllerCompletion completion;
+
 @end
 
 @implementation STLandingViewController
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil completion:(STLandingViewControllerCompletion)completion
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    
+    if (self) {
+        self.completion = completion;
+    }
+    
+    return self;
+}
 
 - (void)viewDidLoad
 {
@@ -50,7 +63,10 @@
     [[Settings settings] setIcon:[user objectForKey:@"icon"]];
     [[Settings settings] save];
     
-    [self.navigationController dismissViewControllerAnimated:NO completion:NULL];
+    // Okay done
+    if (self.completion) {
+        self.completion(YES);
+    }
 }
 
 /**
@@ -58,6 +74,11 @@
  */
 - (void)rdioAuthorizationFailed:(NSString *)message {
     NSLog(@"Rdio authorization failed: %@", message);
+    
+    // Okay done
+    if (self.completion) {
+        self.completion(NO);
+    }
 }
 
 #pragma mark -

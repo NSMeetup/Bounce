@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^STLandingViewControllerCompletion)(BOOL success);
+
 @interface STLandingViewController : UIViewController
 
 - (IBAction)loginButtonPressed:(id)sender;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil completion:(STLandingViewControllerCompletion)completion;
 
 @end

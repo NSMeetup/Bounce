@@ -34,8 +34,8 @@
 - (void)viewDidLoad
 {
     if ([[Settings settings] user] != nil) {
-        [self pullListOfFriends];
         [self setToken];
+        [self pullListOfFriends];
     }
 }
 
@@ -43,7 +43,16 @@
 {
     // Present login view if user isn't logged in yet
     if ([[Settings settings] user] == nil) {
-        STLandingViewController *landingViewController = [[STLandingViewController alloc] initWithNibName:@"STLandingViewController" bundle:nil];
+        
+        STLandingViewController *landingViewController = [[STLandingViewController alloc] initWithNibName:@"STLandingViewController" bundle:[NSBundle mainBundle] completion:^(BOOL success) {
+            if (success) {
+                [self.navigationController popViewControllerAnimated:YES];
+                
+                // Update friends
+                [self setToken];
+                [self pullListOfFriends];
+            }
+        }];
         [self.navigationController pushViewController:landingViewController animated:NO];
     }
 }
