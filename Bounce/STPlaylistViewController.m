@@ -48,17 +48,15 @@
                                [self.friend objectForKey:@"firstName"],
                                [self.friend objectForKey:@"lastName"],
                                [[Settings settings] user]];
+}
 
-    //NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+- (void) createPlaylistWithName:(NSString*) playlistName
+{
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     [params setObject:playlistName forKey:@"name"];
     [params setObject:@"Bounce Battle!" forKey:@"description"];
     [params setObject:self.tracks forKey:@"tracks"];
     [[STAppDelegate rdioInstance] callAPIMethod:@"createPlaylist" withParameters:params delegate:self];
-}
-
-- (void) createPlaylistWithName:(NSString*) playlist_name
-{
-    NSLog(@"Creating playlist with name %@",playlist_name);
 }
 - (void) usePlaylist:(NSString *)key
 {
