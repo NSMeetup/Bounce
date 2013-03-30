@@ -10,6 +10,7 @@
 #import "STAppDelegate.h"
 #import "STLandingViewController.h"
 #import "Settings.h"
+#import "STPlaylistViewController.h"
 
 @interface STBaseViewController () <RdioDelegate, RDAPIRequestDelegate>
 
@@ -114,7 +115,9 @@
     
     NSDictionary *friend = [self.friends objectAtIndex:indexPath.row];
     
-    // TODO create and show playlist view controller
+    STPlaylistViewController *playlistController = [[STPlaylistViewController alloc] initWithNibName:@"STPlaylistViewController" bundle:nil];
+    playlistController.friend = friend;
+    [self.navigationController pushViewController:playlistController animated:YES];
 }
 
 @end

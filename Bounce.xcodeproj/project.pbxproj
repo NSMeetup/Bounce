@@ -32,6 +32,8 @@
 		08EB388F1707710300A45F33 /* login_with_rdio_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08EB38891707710300A45F33 /* login_with_rdio_btn@2x.png */; };
 		08EB38911707710300A45F33 /* splash_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 08EB388B1707710300A45F33 /* splash_bg@2x.png */; };
 		08EB3893170771C700A45F33 /* splash_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 08EB3892170771C700A45F33 /* splash_bg.png */; };
+		DACE019A1707787F00AE1157 /* STPlaylistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DACE01981707787F00AE1157 /* STPlaylistViewController.m */; };
+		DACE019B1707787F00AE1157 /* STPlaylistViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DACE01991707787F00AE1157 /* STPlaylistViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +69,9 @@
 		08EB38891707710300A45F33 /* login_with_rdio_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_with_rdio_btn@2x.png"; sourceTree = "<group>"; };
 		08EB388B1707710300A45F33 /* splash_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash_bg@2x.png"; sourceTree = "<group>"; };
 		08EB3892170771C700A45F33 /* splash_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_bg.png; sourceTree = "<group>"; };
+		DACE01971707787F00AE1157 /* STPlaylistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPlaylistViewController.h; sourceTree = "<group>"; };
+		DACE01981707787F00AE1157 /* STPlaylistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPlaylistViewController.m; sourceTree = "<group>"; };
+		DACE01991707787F00AE1157 /* STPlaylistViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = STPlaylistViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,12 +134,15 @@
 				083EB99D17076B9600CC7B13 /* STBaseViewController.m */,
 				083EB99E17076B9600CC7B13 /* STBaseViewController.xib */,
 				08D986971707534600CBDF9E /* STLandingViewController.h */,
+				DACE01971707787F00AE1157 /* STPlaylistViewController.h */,
+				DACE01981707787F00AE1157 /* STPlaylistViewController.m */,
+				DACE01991707787F00AE1157 /* STPlaylistViewController.xib */,
 				08D986981707534600CBDF9E /* STLandingViewController.m */,
 				08D9869A1707534600CBDF9E /* STLandingViewController.xib */,
+				08D986861707534600CBDF9E /* Supporting Files */,
 				083EB9A117076C5700CC7B13 /* Settings.h */,
 				083EB9A217076C5700CC7B13 /* Settings.m */,
 				08EB387F17076F2A00A45F33 /* Images */,
-				08D986861707534600CBDF9E /* Supporting Files */,
 			);
 			path = Bounce;
 			sourceTree = "<group>";
@@ -230,6 +238,7 @@
 				08EB388F1707710300A45F33 /* login_with_rdio_btn@2x.png in Resources */,
 				08EB38911707710300A45F33 /* splash_bg@2x.png in Resources */,
 				08EB3893170771C700A45F33 /* splash_bg.png in Resources */,
+				DACE019B1707787F00AE1157 /* STPlaylistViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,6 +254,7 @@
 				08D986991707534600CBDF9E /* STLandingViewController.m in Sources */,
 				083EB99F17076B9600CC7B13 /* STBaseViewController.m in Sources */,
 				083EB9A317076C5700CC7B13 /* Settings.m in Sources */,
+				DACE019A1707787F00AE1157 /* STPlaylistViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
