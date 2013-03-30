@@ -55,6 +55,9 @@
     self.bounceQueueLabel.font = [UIFont openSansLightWithSize:self.bounceQueueLabel.font.pointSize];
     self.bounceQueueLabel.textColor = [UIColor grayColor];
     
+    // Currently playing hidden
+    [self.currentlyPlayingView setHidden:YES];
+    
     [self findOrCreatePlaylist];
 }
 
@@ -189,25 +192,24 @@
     description.text = [NSString stringWithFormat:@"%@ - %@", [track objectForKey:@"artist"], [track objectForKey:@"album"]];
     [cell.contentView addSubview:description];
     
-    /*if ([friend objectForKey:@"downloadedIconImage"]) {
+    if ([track objectForKey:@"downloadedIconImage"]) {
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(20.0, 13.0, 40.0, 40.0)];
-        imageView.image = [friend objectForKey:@"downloadedIconImage"];
+        imageView.image = [track objectForKey:@"downloadedIconImage"];
         imageView.contentMode = UIViewContentModeScaleAspectFill;
         imageView.clipsToBounds = YES;
         imageView.layer.cornerRadius = imageView.frame.size.width / 2;
         imageView.layer.masksToBounds = YES;
         [cell.contentView addSubview:imageView];
     } else {
-        NSURL *imageURL = [NSURL URLWithString:[friend objectForKey:@"icon250"]];
-        NSLog(@"%@", imageURL);
+        NSURL *imageURL = [NSURL URLWithString:[track objectForKey:@"icon"]];
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
             NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
             dispatch_async(dispatch_get_main_queue(), ^{
-                [friend setObject:[UIImage imageWithData:imageData] forKey:@"downloadedIconImage"];
+                [track setObject:[UIImage imageWithData:imageData] forKey:@"downloadedIconImage"];
                 [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
             });
         });
-    }*/
+    }
     
     return cell;
 }
@@ -224,8 +226,26 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     NSMutableDictionary *track = [self.tracks objectAtIndex:indexPath.row];
-    
+    [self playTrack:track];
+}
+
+- (void)playTrack:(NSDictionary *)track
+{
     [[STAppDelegate rdioInstance].player playSource:[track objectForKey:@"key"]];
+    
+    self.currentSongLabel.text = [track objectForKey:@"name"];
+    self.currentArtistLabel.text = [track objectForKey:@"artist"];
+    self.currentAlbumLabel.text = [track objectForKey:@"album"];
+    
+    if ([track objectForKey:@"downloadedIconImage"]) {
+        self.currentSongImageView.image = [track objectForKey:@"downloadedIconImage"];
+        self.currentSongImageView.contentMode = UIViewContentModeScaleAspectFill;
+        self.currentSongImageView.clipsToBounds = YES;
+        self.currentSongImageView.layer.cornerRadius = self.currentSongImageView.frame.size.width / 2;
+        self.currentSongImageView.layer.masksToBounds = YES;
+    }
+    
+    self.currentlyPlayingView.hidden = NO;
 }
 
 @end
