@@ -29,23 +29,43 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self createPlaylist];
+    self.tracks = @""; // @todo
+    
+    [self findOrCreatePlaylist];
     // Do any additional setup after loading the view from its nib.
 }
 
-- (void) createPlaylist
+- (void) findOrCreatePlaylist
 {
-    self.tracks = @"";
-    NSString *playlistName = [NSString stringWithFormat:@"Bounce %@ %@ vs %@",
-                              [self.friend objectForKey:@"firstName"],
-                              [self.friend objectForKey:@"lastName"],
-                              [[Settings settings] user]];
     
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    [params setObject:[[Settings settings] userKey] forKey:@"user"];
+    [params setObject:@"Bounce Battle!" forKey:@"description"];
+    [params setObject:self.tracks forKey:@"tracks"];
+    [[STAppDelegate rdioInstance] callAPIMethod:@"getUserPlaylists" withParameters:params delegate:self];
+    
+    NSString *playlistName = [NSString stringWithFormat:@"Bounce %@ %@ vs %@",
+                               [self.friend objectForKey:@"firstName"],
+                               [self.friend objectForKey:@"lastName"],
+                               [[Settings settings] user]];
+}
+
+- (void) createPlaylistWithName:(NSString*) playlistName
+{
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     [params setObject:playlistName forKey:@"name"];
     [params setObject:@"Bounce Battle!" forKey:@"description"];
     [params setObject:self.tracks forKey:@"tracks"];
     [[STAppDelegate rdioInstance] callAPIMethod:@"createPlaylist" withParameters:params delegate:self];
+}
+- (void) usePlaylist:(NSString *)key
+{
+    NSLog(@"Found playlist with key %@",key);
+}
+
+- (void)filterContentForSearchText:(NSString *)searchText scope:(NSString *)scope
+{
+    NSLog(@"Searching for %@",searchText);
 }
 
 
@@ -54,8 +74,35 @@
 
 - (void)rdioRequest:(RDAPIRequest *)request didLoadData:(id)data {
     
-    NSLog(@"%@", request.parameters);
-    NSLog(@"%@", data);
+    if ([[request.parameters objectForKey:@"method"] isEqual: @"getUserPlaylists"]) {
+        NSString *playlistName1 = [NSString stringWithFormat:@"Bounce %@ %@ vs %@",
+                                  [self.friend objectForKey:@"firstName"],
+                                  [self.friend objectForKey:@"lastName"],
+                                  [[Settings settings] user]];
+        
+        NSString *playlistName2 = [NSString stringWithFormat:@"Bounce %@ vs %@ %@",
+                                   [[Settings settings] user],
+                                   [self.friend objectForKey:@"firstName"],
+                                   [self.friend objectForKey:@"lastName"]];
+        
+        BOOL foundPlaylist = NO;
+        for(NSDictionary* playlist in data) {
+            NSString* name = [playlist objectForKey:@"name"];
+            
+            if([name isEqual: playlistName1] || [name isEqual: playlistName2]) {
+                foundPlaylist = YES;
+                [self usePlaylist:[playlist objectForKey:@"key"]];
+                break;
+            }
+        }
+        
+        if (!foundPlaylist) {
+            [self createPlaylistWithName:playlistName1];
+        }
+    }
+    
+    //NSLog(@"%@", request.parameters);
+    //NSLog(@"%@", data);
     
 }
 
