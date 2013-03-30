@@ -160,7 +160,6 @@
 				DACE01991707787F00AE1157 /* STPlaylistViewController.xib */,
 				08D986981707534600CBDF9E /* STLandingViewController.m */,
 				08D9869A1707534600CBDF9E /* STLandingViewController.xib */,
-				08D986861707534600CBDF9E /* Supporting Files */,
 				083EB9A117076C5700CC7B13 /* Settings.h */,
 				083EB9A217076C5700CC7B13 /* Settings.m */,
 				08EB38A41707808800A45F33 /* UIFont+Bounce.h */,
