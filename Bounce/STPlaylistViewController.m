@@ -222,6 +222,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    NSMutableDictionary *track = [self.tracks objectAtIndex:indexPath.row];
+    
+    [[STAppDelegate rdioInstance].player playSource:[track objectForKey:@"key"]];
 }
 
 @end
