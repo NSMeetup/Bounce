@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface STPlaylistViewController : UIViewController
-    @property(nonatomic) NSDictionary *friend;
-    @property(nonatomic) NSDictionary *currentUser;
-    @property(nonatomic) NSString *tracks;
+
+@property(nonatomic, retain) NSDictionary *friend;
+@property(nonatomic, retain) NSDictionary *playlist;
+
 @end

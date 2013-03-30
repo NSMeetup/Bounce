@@ -29,25 +29,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.tracks = @""; // @todo
     
     [self findOrCreatePlaylist];
-    // Do any additional setup after loading the view from its nib.
 }
 
 - (void) findOrCreatePlaylist
 {
-    
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     [params setObject:[[Settings settings] userKey] forKey:@"user"];
-    [params setObject:@"Bounce Battle!" forKey:@"description"];
-    [params setObject:self.tracks forKey:@"tracks"];
     [[STAppDelegate rdioInstance] callAPIMethod:@"getUserPlaylists" withParameters:params delegate:self];
-    
-    NSString *playlistName = [NSString stringWithFormat:@"Bounce %@ %@ vs %@",
-                               [self.friend objectForKey:@"firstName"],
-                               [self.friend objectForKey:@"lastName"],
-                               [[Settings settings] user]];
 }
 
 - (void) createPlaylistWithName:(NSString*) playlistName
@@ -55,43 +45,38 @@
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     [params setObject:playlistName forKey:@"name"];
     [params setObject:@"Bounce Battle!" forKey:@"description"];
-    [params setObject:self.tracks forKey:@"tracks"];
+    [params setObject:@"" forKey:@"tracks"];
     [[STAppDelegate rdioInstance] callAPIMethod:@"createPlaylist" withParameters:params delegate:self];
 }
-- (void) usePlaylist:(NSString *)key
-{
-    NSLog(@"Found playlist with key %@",key);
-}
-
-- (void)filterContentForSearchText:(NSString *)searchText scope:(NSString *)scope
-{
-    NSLog(@"Searching for %@",searchText);
-}
-
 
 #pragma mark -
 #pragma mark RDAPIRequestDelegate
 
-- (void)rdioRequest:(RDAPIRequest *)request didLoadData:(id)data {
+- (void)rdioRequest:(RDAPIRequest *)request didLoadData:(id)data
+{
+    NSLog(@"%@", data);
     
-    if ([[request.parameters objectForKey:@"method"] isEqual: @"getUserPlaylists"]) {
-        NSString *playlistName1 = [NSString stringWithFormat:@"Bounce %@ %@ vs %@",
-                                  [self.friend objectForKey:@"firstName"],
-                                  [self.friend objectForKey:@"lastName"],
-                                  [[Settings settings] user]];
+    NSString *method = [request.parameters objectForKey:@"method"];
+    
+    if ([method isEqualToString: @"getUserPlaylists"]) {
         
-        NSString *playlistName2 = [NSString stringWithFormat:@"Bounce %@ vs %@ %@",
+        NSString *playlistName1 = [NSString stringWithFormat:@"Bounce %@ vs %@ %@",
                                    [[Settings settings] user],
                                    [self.friend objectForKey:@"firstName"],
                                    [self.friend objectForKey:@"lastName"]];
         
+        NSString *playlistName2 = [NSString stringWithFormat:@"Bounce %@ %@ vs %@",
+                                  [self.friend objectForKey:@"firstName"],
+                                  [self.friend objectForKey:@"lastName"],
+                                  [[Settings settings] user]];
+        
         BOOL foundPlaylist = NO;
-        for(NSDictionary* playlist in data) {
+        for (NSDictionary* playlist in data) {
             NSString* name = [playlist objectForKey:@"name"];
             
             if([name isEqual: playlistName1] || [name isEqual: playlistName2]) {
                 foundPlaylist = YES;
-                [self usePlaylist:[playlist objectForKey:@"key"]];
+                self.playlist = playlist;
                 break;
             }
         }
@@ -99,23 +84,13 @@
         if (!foundPlaylist) {
             [self createPlaylistWithName:playlistName1];
         }
+    } else if ([method isEqualToString: @"createPlaylist"]) {
+        self.playlist = data;
     }
-    
-    //NSLog(@"%@", request.parameters);
-    //NSLog(@"%@", data);
-    
 }
 
 - (void)rdioRequest:(RDAPIRequest *)request didFailWithError:(NSError*)error {
     NSLog(@"error");
-}
-
-
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end
