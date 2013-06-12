@@ -136,12 +136,16 @@
         imageView.layer.masksToBounds = YES;
         [cell.contentView addSubview:imageView];
     } else {
+        __weak STBaseViewController *weakSelf = self;
         NSURL *imageURL = [NSURL URLWithString:[friend objectForKey:@"icon250"]];
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
             NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
             dispatch_async(dispatch_get_main_queue(), ^{
-                [friend setObject:[UIImage imageWithData:imageData] forKey:@"downloadedIconImage"];
-                [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+                NSUInteger index = [weakSelf.friends indexOfObject:friend];
+                if(index == NSNotFound)
+                    return;
+                [[weakSelf.friends objectAtIndex:index] setObject:[UIImage imageWithData:imageData] forKey:@"downloadedIconImage"];
+                [weakSelf.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
             });
         });
     }

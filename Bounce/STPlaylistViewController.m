@@ -204,12 +204,16 @@
         imageView.layer.masksToBounds = YES;
         [cell.contentView addSubview:imageView];
     } else {
+        __weak STPlaylistViewController *weakSelf = self;
         NSURL *imageURL = [NSURL URLWithString:[track objectForKey:@"icon"]];
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
             NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
             dispatch_async(dispatch_get_main_queue(), ^{
-                [track setObject:[UIImage imageWithData:imageData] forKey:@"downloadedIconImage"];
-                [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+                NSUInteger index = [weakSelf.tracks indexOfObject:track];
+                if(index == NSNotFound)
+                    return;
+                [[weakSelf.tracks objectAtIndex:index] setObject:[UIImage imageWithData:imageData] forKey:@"downloadedIconImage"];
+                [weakSelf.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
             });
         });
     }
